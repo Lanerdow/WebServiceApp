@@ -2,11 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Index</title>
 </head>
 <body>
     <div>
-        <a href="http://localhost:8000/calendar/2023/10">Ici</a>
+        <form method="GET" action="/calendar" >
+            <ul>
+                <li>
+                    <label for="year">Année</label>
+                    <input type="text" id="year" name="year"/>
+                </li>
+                <li>
+                    <label for="month">Mois</label>
+                    <input type="text" id="month" name="month"/>
+                </li>
+                <li>
+                    <input type="submit" value="Submit"/>
+                </li>
+            </ul>
+        </form>
     </div>
 </body>
 </html>

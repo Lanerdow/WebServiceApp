@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 
 app = Flask(__name__)
@@ -9,11 +9,19 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+
 # Route vers l'API
-@app.route('/calendar/<string:year>/<string:month>', methods=['GET'])
-def get_calendar(year, month):
+@app.route('/calendar', methods=['GET'])
+def get_calendar():
+
+    # Récupération de la variable year en GET
+    year = request.args.get('year')
+
+    # Récupération de la variable month en GET
+    month = request.args.get('month')
+
     # URL de l'API
-    api_url = 'http://localhost:8080/calendar/'+year+'/'+month
+    api_url = 'http://localhost:8080/calendar?year=' + year + '&month=' + month
 
     try:
         # Requête HTTP
